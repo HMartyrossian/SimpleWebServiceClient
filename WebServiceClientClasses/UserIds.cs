@@ -1,15 +1,25 @@
-﻿using System.IO;
-using System.Runtime.Serialization;
-using System.Runtime.Serialization.Json;
-using System.Text;
-
-namespace WebServiceClientClasses
+﻿namespace WebServiceClientClasses
 {
+	using System.IO;
+	using System.Runtime.Serialization;
+	using System.Runtime.Serialization.Json;
+	using System.Text;
+
 #pragma warning disable CS0649
 
 	[DataContract]
 	internal class UserIds
 	{
+		[DataMember(Name = "result")]
+		private int[] result;
+
+		[DataMember(Name = "token")]
+		private string token;
+
+		public int[] Result { get { return this.result; } }
+
+		public string Token { get { return this.token; } }
+
 		// Deserialize a JSON stream to a User object.  
 		public static UserIds ReadToObject(string json)
 		{
@@ -23,12 +33,6 @@ namespace WebServiceClientClasses
 
 			return deserializedUserIds;
 		}
-
-		[DataMember]
-		public int[] result;
-
-		[DataMember]
-		public string token;
 	}
 
 #pragma warning restore CS0649

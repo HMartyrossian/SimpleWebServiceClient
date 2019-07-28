@@ -10,12 +10,6 @@
 	[DataContract]
 	public class Person
 	{
-		public string Name { get { return this.name; } }
-
-		public int Age { get { return this.age; } }
-
-		public string PhoneNumber { get { return this.phoneNumber; } }
-
 		[DataMember(Name = "id")]
 		private uint id;
 
@@ -33,6 +27,12 @@
 
 		[DataMember(Name = "bio")]
 		private string bio;
+
+		public string Name { get { return this.name; } }
+
+		public int Age { get { return this.age; } }
+
+		public string PhoneNumber { get { return this.phoneNumber; } }
 
 		// Deserialize a JSON stream to a User object.  
 		public static Person ReadToObject(string json)

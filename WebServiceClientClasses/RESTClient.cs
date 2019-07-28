@@ -1,17 +1,36 @@
-﻿using System;
-using System.Collections.Generic;
-
-using RestSharp;
-
-using Verifiers;
-
-namespace WebServiceClientClasses
+﻿namespace WebServiceClientClasses
 {
+	using System;
+	using System.Collections.Generic;
+
+	using RestSharp;
+
+	using Verifiers;
+
 	public class RESTClient : IRESTClient
 	{
+		protected static readonly string LIST = "list";
+		protected static readonly string LISTWITHTOKEN = "list?token=";
+		protected static readonly string DETAIL = "detail/";
+
+		protected RestClient restClient;
+
+		protected SortedSet<Person> people = new SortedSet<Person>(new CmpPersonByAge());
+		protected SortedSet<Person> resultOfSelection = new SortedSet<Person>(new CmpPersonByName());
+
+		protected List<string> errors = new List<string>();
+
 		public RESTClient(string uri)
 		{
 			this.restClient = new RestClient(uri);
+		}
+
+		public virtual IList<string> Errors
+		{
+			get
+			{
+				return this.errors;
+			}
 		}
 
 		public virtual ISet<Person> SelectNYoungest(int count)
@@ -51,15 +70,16 @@ namespace WebServiceClientClasses
 			{
 				do
 				{
-					var endPoint = (string.IsNullOrEmpty(token)) ? LIST : LISTWITHTOKEN + token;
+					var endPoint = string.IsNullOrEmpty(token) ? LIST : LISTWITHTOKEN + token;
 					var request = new RestRequest(endPoint, Method.POST, DataFormat.Json);
 					var response = this.restClient.Get(request);
 					var userIds = UserIds.ReadToObject(response.Content);
 
-					this.GetPeopleData(userIds.result);
+					this.GetPeopleData(userIds.Result);
 
-					token = userIds.token;
-				} while (!string.IsNullOrEmpty(token));
+					token = userIds.Token;
+				}
+				while (!string.IsNullOrEmpty(token));
 			}
 			catch (Exception ex)
 			{
@@ -97,24 +117,5 @@ namespace WebServiceClientClasses
 				}
 			}
 		}
-
-		public virtual IList<string> Errors
-		{
-			get
-			{
-				return this.errors;
-			}
-		}
-
-		protected RestClient restClient;
-
-		protected SortedSet<Person> people = new SortedSet<Person>(new CmpPersonByAge());
-		protected SortedSet<Person> resultOfSelection = new SortedSet<Person>(new CmpPersonByName());
-
-		protected List<string> errors = new List<string>();
-
-		protected static readonly string LIST = "list";
-		protected static readonly string LISTWITHTOKEN = "list?token=";
-		protected static readonly string DETAIL = "detail/";
 	}
 }
