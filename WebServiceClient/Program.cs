@@ -47,7 +47,7 @@
 			var count = errors.Count;
 			if (errors.Count > 0)
 			{
-				Console.Out.WriteLine(string.Format("Detected {0} errors:", count));
+				Console.Out.WriteLine(string.Format("Detected {0} error(s):", count));
 				foreach (var err in errors)
 				{
 					Console.Out.WriteLine(err);
