@@ -32,7 +32,7 @@
 			var count = selection.Count;
 			if (count > 0)
 			{
-				Console.Out.WriteLine("Selection returned {0} persons:", count);
+				Console.Out.WriteLine("Selection returned {0} person(s):", count);
 				foreach (var person in selection)
 				{
 					Console.Out.WriteLine(person.ToString());
