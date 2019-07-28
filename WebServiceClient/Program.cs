@@ -12,7 +12,7 @@
 			try
 			{
 				var uri = args[0];
-				var client = new RESTClient(uri);
+				var client = new AppRestClient(uri);
 
 				var count = int.Parse(args[1]);
 				var selection = client.SelectNYoungest(count);

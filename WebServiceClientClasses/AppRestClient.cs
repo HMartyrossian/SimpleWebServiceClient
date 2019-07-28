@@ -7,7 +7,7 @@
 
 	using Verifiers;
 
-	public class RESTClient : IAppRestClient
+	public class AppRestClient : IAppRestClient
 	{
 		protected static readonly string LIST = "list";
 		protected static readonly string LISTWITHTOKEN = "list?token=";
@@ -20,7 +20,7 @@
 
 		protected List<string> errors = new List<string>();
 
-		public RESTClient(string uri)
+		public AppRestClient(string uri)
 		{
 			this.restClient = new RestClient(uri);
 		}
