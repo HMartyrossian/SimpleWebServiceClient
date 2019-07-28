@@ -2,7 +2,7 @@
 {
 	using System.Collections.Generic;
 
-	public interface IRESTClient
+	public interface IAppRestClient
 	{
 		IList<string> Errors { get; }
 

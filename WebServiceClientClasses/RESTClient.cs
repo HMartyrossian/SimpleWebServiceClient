@@ -7,13 +7,13 @@
 
 	using Verifiers;
 
-	public class RESTClient : IRESTClient
+	public class RESTClient : IAppRestClient
 	{
 		protected static readonly string LIST = "list";
 		protected static readonly string LISTWITHTOKEN = "list?token=";
 		protected static readonly string DETAIL = "detail/";
 
-		protected RestClient restClient;
+		protected IRestClient restClient;
 
 		protected SortedSet<Person> people = new SortedSet<Person>(new CmpPersonByAge());
 		protected SortedSet<Person> resultOfSelection = new SortedSet<Person>(new CmpPersonByName());
