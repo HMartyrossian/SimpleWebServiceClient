@@ -50,12 +50,12 @@
 		public override string ToString()
 		{
 			var result = new StringBuilder();
-			result.AppendLine(this.id.ToString());
-			result.AppendLine(this.name);
-			result.AppendLine(this.age.ToString());
-			result.AppendLine(this.phoneNumber);
-			result.AppendLine(this.photo);
-			result.AppendLine(this.bio);
+			result.AppendLine(string.Format("ID: {0}", this.id));
+			result.AppendLine(string.Format("Name: {0}", this.name));
+			result.AppendLine(string.Format("Age: {0}", this.age));
+			result.AppendLine(string.Format("Phone number: {0}", this.phoneNumber));
+			result.AppendLine(string.Format("Photo URL: {0}", this.photo));
+			result.AppendLine(string.Format("Bio: {0}", this.bio));
 			result.AppendLine(string.Empty);
 
 			return result.ToString();
