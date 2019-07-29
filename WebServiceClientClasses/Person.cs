@@ -37,11 +37,12 @@
 		// Deserialize a JSON stream to a User object.  
 		public static Person ReadToObject(string json)
 		{
-			var deserializedPerson = new Person();
-			var ms = new MemoryStream(Encoding.UTF8.GetBytes(json));
-			var ser = new DataContractJsonSerializer(deserializedPerson.GetType());
-			deserializedPerson = ser.ReadObject(ms) as Person;
-			ms.Close();
+			Person deserializedPerson = null;
+			using (var ms = new MemoryStream(Encoding.UTF8.GetBytes(json)))
+			{
+				var ser = new DataContractJsonSerializer(typeof(Person));
+				deserializedPerson = ser.ReadObject(ms) as Person;
+			}
 
 			return deserializedPerson;
 		}

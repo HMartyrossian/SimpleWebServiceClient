@@ -37,8 +37,6 @@
 				{
 					Console.Out.WriteLine(person.ToString());
 				}
-
-				Console.Out.WriteLine();
 			}
 		}
 
