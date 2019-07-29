@@ -38,6 +38,9 @@
 			// Have to clear result of previous selection first:
 			this.resultOfSelection.Clear();
 
+			// As well as errors:
+			this.errors.Clear();
+
 			this.PullPeopleData();
 
 			// We might not have enough people to select desired number of them:
