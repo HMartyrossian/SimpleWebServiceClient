@@ -2,6 +2,7 @@
 {
 	using System;
 	using System.Collections.Generic;
+	using System.Linq;
 
 	using RestSharp;
 
@@ -16,7 +17,6 @@
 		protected IRestClient restClient;
 
 		protected SortedSet<Person> people = new SortedSet<Person>(new CmpPersonByAge());
-		protected SortedSet<Person> resultOfSelection = new SortedSet<Person>(new CmpPersonByName());
 
 		protected List<string> errors = new List<string>();
 
@@ -33,33 +33,14 @@
 			}
 		}
 
-		public virtual ISet<Person> SelectNYoungest(int count)
+		public virtual IOrderedEnumerable<Person> SelectNYoungest(int count)
 		{
-			// Have to clear result of previous selection first:
-			this.resultOfSelection.Clear();
-
-			// As well as errors:
+			// Have to clear errors:
 			this.errors.Clear();
 
 			this.PullPeopleData();
 
-			// We might not have enough people to select desired number of them:
-			var size = Math.Min(this.people.Count, count);
-
-			// Do we have any data to process?
-			if (size > 0)
-			{
-				foreach (var person in this.people)
-				{
-					this.resultOfSelection.Add(person);
-					if (--size == 0)
-					{
-						break;
-					}
-				}
-			}
-
-			return this.resultOfSelection;
+			return people.Take(count).OrderBy(p => p.Name);
 		}
 
 		protected void PullPeopleData()

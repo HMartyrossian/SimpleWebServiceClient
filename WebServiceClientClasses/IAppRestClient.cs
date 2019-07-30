@@ -1,11 +1,12 @@
 ﻿namespace WebServiceClientClasses
 {
 	using System.Collections.Generic;
+	using System.Linq;
 
 	public interface IAppRestClient
 	{
 		IList<string> Errors { get; }
 
-		ISet<Person> SelectNYoungest(int numberOfPersons);
+		IOrderedEnumerable<Person> SelectNYoungest(int numberOfPersons);
 	}
 }

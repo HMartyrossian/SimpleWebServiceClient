@@ -43,7 +43,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CmpPersonByAge.cs" />
-    <Compile Include="CmpPersonByName.cs" />
     <Compile Include="InvalidListResponceException.cs" />
     <Compile Include="IAppRestClient.cs" />
     <Compile Include="Person.cs" />

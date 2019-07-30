@@ -2,6 +2,7 @@
 {
 	using System;
 	using System.Collections.Generic;
+	using System.Linq;
 
 	using WebServiceClientClasses;
 
@@ -27,9 +28,9 @@
 			}
 		}
 
-		private static void Visualize(ISet<Person> selection)
+		private static void Visualize(IOrderedEnumerable<Person> selection)
 		{
-			var count = selection.Count;
+			var count = selection.Count();
 			if (count > 0)
 			{
 				Console.Out.WriteLine("Selection returned {0} person(s):", count);
