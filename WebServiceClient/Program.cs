@@ -61,7 +61,7 @@
 			Console.Out.WriteLine("Application failed with an exception:");
 			while (ex != null)
 			{
-				Console.Out.WriteLine(ex.Message);
+				Console.Out.WriteLine(ex.ToString());
 				ex = ex.InnerException;
 			}
 		}
